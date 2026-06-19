@@ -452,7 +452,12 @@ apply from: 'gradle/test.gradle'
 apply from: 'gradle/groovydoc.gradle'
 apply from: 'gradle/docs.gradle'
 apply from: 'gradle/assemble.gradle'
-apply from: 'gradle/upload.gradle'
+// bazelbub builds the jar only and never publishes. upload.gradle uses the legacy
+// `maven` plugin (uploadArchives/mavenDeployer/MavenDeployment), removed in Gradle 7+,
+// so it fails to compile under bazelbub's Gradle 8.11.1. It also pulls in backports.gradle
+// (extra groovy-backports-* jars) + pomconfigurer.gradle — none referenced by the main
+// build. Drop the apply so configuration succeeds and :jar builds.
+// apply from: 'gradle/upload.gradle'
 apply from: 'gradle/idea.gradle'
 apply from: 'gradle/eclipse.gradle'
 apply from: 'gradle/quality.gradle'
