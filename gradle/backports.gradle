@@ -40,7 +40,7 @@ backports.each { pkg, classList ->
         group = 'Backports'
         dependsOn jar
 
-        from zipTree(jar.archivePath)
+        from zipTree(jar.archiveFile.get().asFile)
         include classList
         archiveBaseName = "groovy-backports-$pkg"
         archiveClassifier = ''

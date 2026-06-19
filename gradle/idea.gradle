@@ -212,7 +212,7 @@ idea {
             <orderEntry type="module-library" exported="">
               <library>
                 <CLASSES>
-                  <root url="jar://${rootProject.jar.archivePath}!/"/>
+                  <root url="jar://${rootProject.jar.archiveFile.get().asFile}!/"/>
                 </CLASSES>
               </library>
             </orderEntry>

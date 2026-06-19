@@ -59,8 +59,8 @@ allprojects {
             systemProperties 'groovy.target.indy': true
             dependsOn 'jarWithIndy'
             dependencies.each { dependsOn "${it}:jarWithIndy" }
-            classpath = classpath - files(jar.archivePath, *dependencies.collect { project(it).jar }) +
-                    files({ [jarWithIndy.archivePath, *dependencies.collect { project(it).jarWithIndy }] })
+            classpath = classpath - files(jar.archiveFile.get().asFile, *dependencies.collect { project(it).jar }) +
+                    files({ [jarWithIndy.archiveFile.get().asFile, *dependencies.collect { project(it).jarWithIndy }] })
         }
         task testAll {
             description = "Runs both the normal and indy test suites"
