@@ -242,7 +242,7 @@ allprojects {
                                  'org/objectweb/asm/util/ASMifier.class',
                                  'org/objectweb/asm/util/Trace*']
             ]
-            outputFile = file("$buildDir/libs/${arch.archiveBaseName.get()}-${arch.archiveVersion.get()}${arch.classifier ? '-' + arch.classifier : ''}.jar")
+            outputFile = file("$buildDir/libs/${arch.archiveBaseName.get()}-${arch.archiveVersion.get()}${arch.archiveClassifier.getOrNull() ? '-' + arch.archiveClassifier.get() : ''}.jar")
 
             withManifest {
                 def moduleName = "org.codehaus.${project.name.replace('-', '.')}"
