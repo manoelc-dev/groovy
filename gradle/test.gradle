@@ -145,7 +145,7 @@ ext.extModuleRepoDir = file("$extModuleOutputDir/repo")
 task compileTestExtensionModule(type: JavaCompile) {
     classpath = files(jar)
     source fileTree("$extModuleFixtureDir/src/main/java")
-    destinationDir = file("$extModuleOutputDir/classes")
+    destinationDirectory = file("$extModuleOutputDir/classes")
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
 }
@@ -153,12 +153,12 @@ task compileTestExtensionModule(type: JavaCompile) {
 task testExtensionModuleJar(type: Jar) {
     description = 'Builds a sample extension module used in tests'
     dependsOn compileTestExtensionModule
-    baseName = 'module-test'
+    archiveBaseName = 'module-test'
     version = '1.4'
-    from { compileTestExtensionModule.destinationDir }
+    from { compileTestExtensionModule.destinationDirectory }
     from files("$extModuleFixtureDir/src/main/resources")
     // emulate Maven repo format for output
-    destinationDir = file("$extModuleRepoDir/jars/module-test/module-test/${version}")
+    destinationDirectory = file("$extModuleRepoDir/jars/module-test/module-test/${version}")
 }
 
 tasks.withType(Test) {

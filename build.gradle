@@ -374,7 +374,7 @@ task bootstrapJar(type: Jar) {
     from dgmConverter.outputDir
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    destinationDir = file("$buildDir/bootstrap")
+    destinationDirectory = file("$buildDir/bootstrap")
     archiveClassifier = 'bootstrap'
 }
 
@@ -404,7 +404,7 @@ allprojects {
             sourceCompatibility = 1.8
             targetCompatibility = 1.8
             groovyOptions.optimizationOptions['indy'] = true
-            destinationDir = file("$buildDir/classes/indy")
+            destinationDirectory = file("$buildDir/classes/indy")
         }
     }
 

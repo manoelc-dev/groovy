@@ -331,7 +331,7 @@ task sourceAllJar(type: Jar, dependsOn: { modules()*.sourceJar + rootProject.sou
     modules()*.sourceJar.each {
         with it.rootSpec
     }
-    baseName = 'groovy-all'
+    archiveBaseName = 'groovy-all'
     archiveClassifier = 'sources'
 }
 
@@ -347,13 +347,13 @@ allprojects {
 }
 
 task javadocAllJar(type: Jar, dependsOn: javadocAll) {
-    baseName = 'groovy-all'
+    archiveBaseName = 'groovy-all'
     from javadocAll.destinationDir
     archiveClassifier = 'javadoc'
 }
 
 task groovydocAllJar(type: Jar, dependsOn: groovydocAll) {
-    baseName = 'groovy-all'
+    archiveBaseName = 'groovy-all'
     from groovydocAll.destinationDir
     archiveClassifier = 'groovydoc'
 }
@@ -446,7 +446,7 @@ ext.distSpec = copySpec {
 }
 
 task distBin(type: Zip) {
-    baseName = 'apache-groovy'
+    archiveBaseName = 'apache-groovy'
     appendix = 'binary'
     into("groovy-$version") {
         with distSpec
@@ -459,7 +459,7 @@ task distBin(type: Zip) {
 }
 
 task distDoc(type: Zip, dependsOn: doc) {
-    baseName = 'apache-groovy'
+    archiveBaseName = 'apache-groovy'
     appendix = 'docs'
     into("groovy-$version") {
         with docSpec
@@ -481,7 +481,7 @@ task syncDoc(type: Copy, dependsOn: doc) {
 }
 
 task distSrc(type: Zip) {
-    baseName = 'apache-groovy'
+    archiveBaseName = 'apache-groovy'
     appendix = 'src'
     into("groovy-$version")
     with srcSpec
@@ -519,7 +519,7 @@ distBin.dependsOn checkNoSnapshotVersions
 
 task dist(type: Zip, dependsOn: [checkCompatibility, distBin, distSrc, distDoc, syncDoc]) {
     description = 'Generates the binary, sources, documentation and full distributions'
-    baseName = 'apache-groovy'
+    archiveBaseName = 'apache-groovy'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     appendix 'sdk'
     into "groovy-$version"

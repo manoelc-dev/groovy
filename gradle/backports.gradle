@@ -42,7 +42,7 @@ backports.each { pkg, classList ->
 
         from zipTree(jar.archivePath)
         include classList
-        baseName = "groovy-backports-$pkg"
+        archiveBaseName = "groovy-backports-$pkg"
         archiveClassifier = ''
     }
 
@@ -52,14 +52,14 @@ backports.each { pkg, classList ->
         group = 'Backports'
         dependsOn jar
 
-        baseName = "groovy-backports-$pkg"
+        archiveBaseName = "groovy-backports-$pkg"
         archiveClassifier = 'javadoc'
     }
     def sourcesJar = task "backport${pkg}SourcesJar"(type:Jar) {
         group = 'Backports'
         dependsOn jar
 
-        baseName = "groovy-backports-$pkg"
+        archiveBaseName = "groovy-backports-$pkg"
         archiveClassifier = 'sources'
     }
     backportJars.dependsOn([backportJar, javadocJar, sourcesJar])
