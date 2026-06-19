@@ -35,7 +35,12 @@ buildscript {
     dependencies {
         // using the old "classpath" style of plugins because the new one doesn't play well with multi-modules
         classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.8'
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.3'
+        // Bumped from 3.0.3: that version transitively pulls
+        // org.jfrog.buildinfo:build-info-extractor:2.3.2, a jcenter-era
+        // artifact that was never republished to Maven Central. 4.31.6
+        // pulls build-info-extractor:2.39.6 which IS on Central, keeping
+        // the same `com.jfrog.artifactory` plugin ID.
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.31.6'
         //classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'org.nosphere.apache:creadur-rat-gradle:0.8.1'
         classpath 'gradle.plugin.com.github.jk1:gradle-license-report:1.3'
