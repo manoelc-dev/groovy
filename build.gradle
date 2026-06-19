@@ -460,7 +460,11 @@ apply from: 'gradle/assemble.gradle'
 // apply from: 'gradle/upload.gradle'
 apply from: 'gradle/idea.gradle'
 apply from: 'gradle/eclipse.gradle'
-apply from: 'gradle/quality.gradle'
+// Quality gates (checkstyle/codenarc) aren't needed for a jar-only build, and
+// quality.gradle's codenarc dependencySubstitution uses `substitute(...).with(...)`,
+// removed in Gradle 8 (now `.using(...)`). Nothing references its tasks; drop the apply.
+// (spotbugs stays — it's applied at the root plugins block, not here.)
+// apply from: 'gradle/quality.gradle'
 apply from: 'gradle/parallel-build-fixes.gradle'
 
 // If a local configuration file for tweaking the build is present, apply it
