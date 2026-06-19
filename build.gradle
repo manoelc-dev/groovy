@@ -67,7 +67,16 @@ ext.modules = {
 ext.isReleaseVersion = !groovyVersion.toLowerCase().endsWith('snapshot')
 
 apply from: 'gradle/bad-practices.gradle'
-apply from: 'gradle/publish.gradle'
+// gradle/publish.gradle wires up JFrog artifactory publishing via
+// `apply plugin: 'com.jfrog.artifactory-upload'`. That plugin ID was
+// removed in build-info-extractor-gradle 4.x (now `com.jfrog.artifactory`),
+// and we don't publish from the bazelbub source build anyway. Skip the
+// file when no artifactoryUser is provided — same gate the rest of the
+// publish config keys off of. Signing.gradle uses `taskGraph.hasTask`
+// which silently returns false when artifactoryPublish doesn't exist.
+if (project.hasProperty('artifactoryUser')) {
+    apply from: 'gradle/publish.gradle'
+}
 apply plugin: 'com.github.jk1.dependency-license-report'
 
 File javaHome = new File(System.getProperty('java.home'))
