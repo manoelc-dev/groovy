@@ -183,8 +183,8 @@ allprojects {
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             archiveClassifier = 'indy'
             archiveAppendix = 'raw'
-            from sourceSets.main.java.outputDir
-            from sourceSets.main.groovy.outputDir
+            from sourceSets.main.java.destinationDirectory.get().asFile
+            from sourceSets.main.groovy.destinationDirectory.get().asFile
             from compileGroovyWithIndy.destinationDir
             from "${project.buildDir}/resources/main"
         }

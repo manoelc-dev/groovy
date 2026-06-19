@@ -332,10 +332,10 @@ compileJava {
 
     doLast {
         ant.java(classname:'org.jboss.bridger.Bridger', classpath: rootProject.configurations.tools.asPath, outputproperty: 'stdout') {
-            arg(value: "${sourceSets.main.java.outputDir.canonicalPath}/org/codehaus/groovy/runtime/DefaultGroovyMethods.class")
-            arg(value: "${sourceSets.main.java.outputDir.canonicalPath}/org/codehaus/groovy/runtime/StringGroovyMethods.class")
-            arg(value: "${sourceSets.main.java.outputDir.canonicalPath}/org/codehaus/groovy/classgen/Verifier.class")
-            arg(value: "${sourceSets.main.java.outputDir.canonicalPath}/org/codehaus/groovy/ast/tools/GeneralUtils.class")
+            arg(value: "${sourceSets.main.java.destinationDirectory.get().asFile.canonicalPath}/org/codehaus/groovy/runtime/DefaultGroovyMethods.class")
+            arg(value: "${sourceSets.main.java.destinationDirectory.get().asFile.canonicalPath}/org/codehaus/groovy/runtime/StringGroovyMethods.class")
+            arg(value: "${sourceSets.main.java.destinationDirectory.get().asFile.canonicalPath}/org/codehaus/groovy/classgen/Verifier.class")
+            arg(value: "${sourceSets.main.java.destinationDirectory.get().asFile.canonicalPath}/org/codehaus/groovy/ast/tools/GeneralUtils.class")
         }
         ant.echo('Bridger (groovy): ' + ant.properties.stdout)
     }
