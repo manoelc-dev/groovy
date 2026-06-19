@@ -181,7 +181,7 @@ allprojects {
         task jarWithIndy(type: Jar) {
             dependsOn compileGroovyWithIndy
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-            classifier = 'indy'
+            archiveClassifier = 'indy'
             appendix = 'raw'
             from sourceSets.main.java.outputDir
             from sourceSets.main.groovy.outputDir
@@ -332,30 +332,30 @@ task sourceAllJar(type: Jar, dependsOn: { modules()*.sourceJar + rootProject.sou
         with it.rootSpec
     }
     baseName = 'groovy-all'
-    classifier = 'sources'
+    archiveClassifier = 'sources'
 }
 
 allprojects {
     task javadocJar(type: Jar, dependsOn: javadoc) {
         from javadoc.destinationDir
-        classifier = 'javadoc'
+        archiveClassifier = 'javadoc'
     }
     task groovydocJar(type: Jar, dependsOn: groovydoc) {
         from groovydoc.destinationDir
-        classifier = 'groovydoc'
+        archiveClassifier = 'groovydoc'
     }
 }
 
 task javadocAllJar(type: Jar, dependsOn: javadocAll) {
     baseName = 'groovy-all'
     from javadocAll.destinationDir
-    classifier = 'javadoc'
+    archiveClassifier = 'javadoc'
 }
 
 task groovydocAllJar(type: Jar, dependsOn: groovydocAll) {
     baseName = 'groovy-all'
     from groovydocAll.destinationDir
-    classifier = 'groovydoc'
+    archiveClassifier = 'groovydoc'
 }
 
 evaluationDependsOn('groovy-jaxb')
