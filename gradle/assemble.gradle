@@ -521,7 +521,7 @@ task dist(type: Zip, dependsOn: [checkCompatibility, distBin, distSrc, distDoc, 
     description = 'Generates the binary, sources, documentation and full distributions'
     archiveBaseName = 'apache-groovy'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    appendix 'sdk'
+    archiveAppendix = 'sdk'
     into "groovy-$version"
     from("$projectDir/licenses/LICENSE-SDK")
     from("$projectDir/notices/NOTICE-SDK")
