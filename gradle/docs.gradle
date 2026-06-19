@@ -58,7 +58,10 @@ def groovydocBaseSpec = {
     header = doc.title
     footer = doc.footer
     overviewText = rootProject.resources.text.fromFile('src/main/java/overview.html')
-    includePrivate = false
+    // `includePrivate` was removed from the Groovydoc task in Gradle 8.
+    // Groovydoc generation isn't a bazelbub validation gate output, and
+    // private members are excluded by default anyway.
+    // includePrivate = false
     link 'https://docs.oracle.com/javaee/7/api/', 'javax.servlet.', 'javax.management.'
     link 'https://docs.oracle.com/javase/8/docs/api/', 'java.', 'org.xml.', 'javax.', 'org.w3c.'
     link 'https://docs.groovy-lang.org/docs/ant/api/', 'org.apache.ant.', 'org.apache.tools.ant.'
